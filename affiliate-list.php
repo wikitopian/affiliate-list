@@ -12,10 +12,15 @@ License: GPLv2
 class Affiliate_List {
 
     private $prefix;
+    private $max;
+
+    private $width;
+    private $height;
 
     public function __construct() {
 
         $this->prefix = 'affiliate_list';
+        $this->max = 8;
 
         add_action( 'init', array( &$this, 'init' ) );
 
@@ -24,6 +29,9 @@ class Affiliate_List {
     }
 
     public function init() {
+
+        $this->width  = get_option( $this->prefix . '_width',  48 );
+        $this->height = get_option( $this->prefix . '_height', 48 );
 
         register_post_type(
             $this->prefix,
@@ -98,6 +106,50 @@ HTML;
         $url = sanitize_text_field( $url );
 
         update_post_meta( $post_id, '_' . $this->prefix . '_url', $url );
+
+    }
+
+    public function show( $echo = true ) {
+
+        $loop = new WP_Query(
+            array(
+                'post_type' => $this->prefix,
+                'posts_per_page' => $this->max
+            )
+        );
+
+        $html = "<div id='{$this->prefix}'>\n<ul>";
+
+        while( $loop->have_posts() ) {
+            $loop->the_post();
+            global $post;
+
+            $thumb = get_the_post_thumbnail(
+                $post->ID,
+                array( $this->width, $this->height )
+            );
+            $url   = get_post_meta( $post->ID, '_' . $this->prefix . '_url', true );
+
+
+            $html .= <<<HTML
+
+<li>
+    <a href="{$url}">
+        {$thumb}
+    </a>
+</li>
+
+HTML;
+
+        }
+
+        $html .= "\n</ul>\n</div>\n";
+
+        if( $echo ) {
+            echo $html;
+        } else {
+            return;
+        }
 
     }
 
