@@ -87,28 +87,28 @@ class Furniture {
 
     public function register_taxa() {
 
-        $manufacturer_labels = array(
-            'name'              => _x( 'Manufacturers', 'register_taxonomy: name', DOMAIN ),
-            'singular_name'     => _x( 'Manufacturer', 'register_taxonomy: singular_name', DOMAIN ),
-            'search_items'      => _x( 'Search Manufacturers', 'register_taxonomy: search_items', DOMAIN ),
-            'all_items'         => _x( 'All Manufacturers', 'register_taxonomy: all_items', DOMAIN ),
-            'edit_item'         => _x( 'Edit Manufacturer', 'register_taxonomy: edit_item', DOMAIN ),
-            'update_item'       => _x( 'Update Manufacturer', 'register_taxonomy: update_item', DOMAIN ),
-            'add_new_item'      => _x( 'Add New Manufacturer', 'register_taxonomy: add_new_item', DOMAIN ),
-            'new_item_name'     => _x( 'New Manufacturer Name', 'register_taxonomy: new_item_name', DOMAIN ),
-            'menu_name'         => _x( 'Manufacturer', 'register_taxonomy: menu_name', DOMAIN ),
+        $furniture_type_labels = array(
+            'name'              => _x( 'Furniture Type', 'register_taxonomy: name', DOMAIN ),
+            'singular_name'     => _x( 'Furniture Type', 'register_taxonomy: singular_name', DOMAIN ),
+            'search_items'      => _x( 'Search Types', 'register_taxonomy: search_items', DOMAIN ),
+            'all_items'         => _x( 'All Types', 'register_taxonomy: all_items', DOMAIN ),
+            'edit_item'         => _x( 'Edit Types', 'register_taxonomy: edit_item', DOMAIN ),
+            'update_item'       => _x( 'Update Types', 'register_taxonomy: update_item', DOMAIN ),
+            'add_new_item'      => _x( 'Add New Types', 'register_taxonomy: add_new_item', DOMAIN ),
+            'new_item_name'     => _x( 'New Furniture Type Name', 'register_taxonomy: new_item_name', DOMAIN ),
+            'menu_name'         => _x( 'Furniture Types', 'register_taxonomy: menu_name', DOMAIN ),
         );
 
-        $manufacturer_args = array(
+        $furniture_type_args = array(
             'hierarchical'      => true,
-            'labels'            => $manufacturer_labels,
+            'labels'            => $furniture_type_labels,
             'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'manufacturer' ),
+            'rewrite'           => array( 'slug' => 'furniture-type' ),
             'show_in_nav_menus' => false,
             'show_tagcloud'     => false,
         );
 
-        register_taxonomy( 'manufacturer', 'furniture', $manufacturer_args );
+        register_taxonomy( 'furniture-type', 'furniture', $furniture_type_args );
 
         $series_labels = array(
             'name'              => _x( 'Series', 'register_taxonomy: name', DOMAIN ),
@@ -133,28 +133,28 @@ class Furniture {
 
         register_taxonomy( 'series', 'furniture', $series_args );
 
-        $furniture_type_labels = array(
-            'name'              => _x( 'Furniture Type', 'register_taxonomy: name', DOMAIN ),
-            'singular_name'     => _x( 'Furniture Type', 'register_taxonomy: singular_name', DOMAIN ),
-            'search_items'      => _x( 'Search Types', 'register_taxonomy: search_items', DOMAIN ),
-            'all_items'         => _x( 'All Types', 'register_taxonomy: all_items', DOMAIN ),
-            'edit_item'         => _x( 'Edit Types', 'register_taxonomy: edit_item', DOMAIN ),
-            'update_item'       => _x( 'Update Types', 'register_taxonomy: update_item', DOMAIN ),
-            'add_new_item'      => _x( 'Add New Types', 'register_taxonomy: add_new_item', DOMAIN ),
-            'new_item_name'     => _x( 'New Furniture Type Name', 'register_taxonomy: new_item_name', DOMAIN ),
-            'menu_name'         => _x( 'Furniture Types', 'register_taxonomy: menu_name', DOMAIN ),
+        $manufacturer_labels = array(
+            'name'              => _x( 'Manufacturers', 'register_taxonomy: name', DOMAIN ),
+            'singular_name'     => _x( 'Manufacturer', 'register_taxonomy: singular_name', DOMAIN ),
+            'search_items'      => _x( 'Search Manufacturers', 'register_taxonomy: search_items', DOMAIN ),
+            'all_items'         => _x( 'All Manufacturers', 'register_taxonomy: all_items', DOMAIN ),
+            'edit_item'         => _x( 'Edit Manufacturer', 'register_taxonomy: edit_item', DOMAIN ),
+            'update_item'       => _x( 'Update Manufacturer', 'register_taxonomy: update_item', DOMAIN ),
+            'add_new_item'      => _x( 'Add New Manufacturer', 'register_taxonomy: add_new_item', DOMAIN ),
+            'new_item_name'     => _x( 'New Manufacturer Name', 'register_taxonomy: new_item_name', DOMAIN ),
+            'menu_name'         => _x( 'Manufacturer', 'register_taxonomy: menu_name', DOMAIN ),
         );
 
-        $furniture_type_args = array(
+        $manufacturer_args = array(
             'hierarchical'      => true,
-            'labels'            => $furniture_type_labels,
+            'labels'            => $manufacturer_labels,
             'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'furniture-type' ),
+            'rewrite'           => array( 'slug' => 'manufacturer' ),
             'show_in_nav_menus' => false,
             'show_tagcloud'     => false,
         );
 
-        register_taxonomy( 'furniture-type', 'furniture', $furniture_type_args );
+        register_taxonomy( 'manufacturer', 'furniture', $manufacturer_args );
 
 
 
