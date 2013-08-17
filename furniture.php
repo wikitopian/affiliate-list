@@ -9,9 +9,12 @@ Author URI: http://www.swarmstrategies.com/matt
 License: GPLv2
  */
 
+define( DOMAIN, 'furniture' );
+
 class Furniture {
 
-    private $prefix;
+    private $domain;
+
     private $max;
 
     private $width;
@@ -19,7 +22,8 @@ class Furniture {
 
     public function __construct() {
 
-        $this->prefix = 'furniture';
+        $this->domain = constant( 'DOMAIN' );
+
         $this->max = 24;
 
         add_action( 'init', array( &$this, 'init' ) );
@@ -30,11 +34,11 @@ class Furniture {
 
     public function init() {
 
-        $this->width  = get_option( $this->prefix . '_width',  64 );
-        $this->height = get_option( $this->prefix . '_height', 64 );
+        $this->width  = get_option( DOMAIN . '_width',  64 );
+        $this->height = get_option( DOMAIN . '_height', 64 );
 
         register_post_type(
-            $this->prefix,
+            DOMAIN,
             array(
                 'labels' =>
                 array(
@@ -64,10 +68,10 @@ class Furniture {
     public function add_price_box() {
 
         add_meta_box(
-            $this->prefix . '_price_box',
+            DOMAIN . '_price_box',
             'Price',
             array( &$this, 'price_box' ),
-            $this->prefix,
+            DOMAIN,
             'normal',
             'high'
         );
@@ -77,16 +81,16 @@ class Furniture {
 
     public function price_box( $post ) {
 
-        wp_nonce_field( plugin_basename( __FILE__ ), $this->prefix );
+        wp_nonce_field( plugin_basename( __FILE__ ), DOMAIN );
 
-        $price = get_post_meta( $post->ID, '_' . $this->prefix . '_price', true );
+        $price = get_post_meta( $post->ID, '_' . DOMAIN . '_price', true );
 
         echo <<<HTML
 
 <input
     type="text"
-    name="_{$this->prefix}_price"
-    id  ="_{$this->prefix}_price"
+    name="_{$this->domain}_price"
+    id  ="_{$this->domain}_price"
     value="{$price}"
     size="100%"
     />
@@ -98,17 +102,17 @@ HTML;
     public function price_box_save( $post_id ) {
 
         if(
-            !isset( $_POST[$this->prefix] )
+            !isset( $_POST[DOMAIN] )
             ||
-            !wp_verify_nonce( $_POST[$this->prefix], plugin_basename( __FILE__ ) )
+            !wp_verify_nonce( $_POST[DOMAIN], plugin_basename( __FILE__ ) )
         ) {
             return;
         }
 
-        $price = $_POST['_' . $this->prefix . '_price'];
+        $price = $_POST['_' . DOMAIN . '_price'];
         $price = sanitize_text_field( $price );
 
-        update_post_meta( $post_id, '_' . $this->prefix . '_price', $price );
+        update_post_meta( $post_id, '_' . DOMAIN . '_price', $price );
 
     }
 
@@ -116,12 +120,12 @@ HTML;
 
         $loop = new WP_Query(
             array(
-                'post_type' => $this->prefix,
+                'post_type' => DOMAIN,
                 'posts_per_page' => $this->max
             )
         );
 
-        $html = "<div id='{$this->prefix}'>\n<ul>";
+        $html = "<div id='{$this->domain}'>\n<ul>";
 
         while( $loop->have_posts() ) {
             $loop->the_post();
@@ -131,7 +135,7 @@ HTML;
                 $post->ID,
                 array( $this->width, $this->height )
             );
-            $price   = get_post_meta( $post->ID, '_' . $this->prefix . '_price', true );
+            $price   = get_post_meta( $post->ID, '_' . DOMAIN . '_price', true );
 
 
             $html .= <<<HTML
