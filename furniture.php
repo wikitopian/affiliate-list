@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: Affiliate List
+Plugin Name: Office Wizard
 Plugin URI: http://www.github.com/wikitopian/affiliate-list
-Description: Easily add and remove affiliate thumbs
+Description: Empower customers to assemble their own fantasy office.
 Version: 0.1.0
 Author: Matt Parrott
 Author URI: http://www.swarmstrategies.com/matt
 License: GPLv2
  */
 
-class Affiliate_List {
+class Furniture {
 
     private $prefix;
     private $max;
@@ -19,12 +19,12 @@ class Affiliate_List {
 
     public function __construct() {
 
-        $this->prefix = 'affiliate_list';
-        $this->max = 8;
+        $this->prefix = 'furniture';
+        $this->max = 24;
 
         add_action( 'init', array( &$this, 'init' ) );
 
-        add_action( 'save_post', array( &$this, 'url_box_save' ) );
+        add_action( 'save_post', array( &$this, 'price_save' ) );
 
     }
 
@@ -38,8 +38,8 @@ class Affiliate_List {
             array(
                 'labels' =>
                 array(
-                    'name' => 'Affiliate List',
-                    'singular_name' => 'Affiliate'
+                    'name' => 'Furniture',
+                    'singular_name' => 'Furniture'
                 ),
                 'public' => true,
                 'has_archive' => true,
@@ -48,22 +48,25 @@ class Affiliate_List {
                 'has_archive' => false,
                 'supports' =>
                 array(
+                    'editor',
+                    'excerpt',
+                    'revisions',
                     'title',
                     'thumbnail'
                 ),
                 'register_meta_box_cb' =>
-                array( &$this, 'add_url_box' )
+                array( &$this, 'add_price_box' )
             )
         );
 
     }
 
-    public function add_url_box() {
+    public function add_price_box() {
 
         add_meta_box(
-            $this->prefix . '_url_box',
-            'Affiliate Link',
-            array( &$this, 'url_box' ),
+            $this->prefix . '_price_box',
+            'Price',
+            array( &$this, 'price_box' ),
             $this->prefix,
             'normal',
             'high'
@@ -72,19 +75,19 @@ class Affiliate_List {
     }
 
 
-    public function url_box( $post ) {
+    public function price_box( $post ) {
 
         wp_nonce_field( plugin_basename( __FILE__ ), $this->prefix );
 
-        $url = get_post_meta( $post->ID, '_' . $this->prefix . '_url', true );
+        $price = get_post_meta( $post->ID, '_' . $this->prefix . '_price', true );
 
         echo <<<HTML
 
 <input
     type="text"
-    name="_{$this->prefix}_url"
-    id  ="_{$this->prefix}_url"
-    value="{$url}"
+    name="_{$this->prefix}_price"
+    id  ="_{$this->prefix}_price"
+    value="{$price}"
     size="100%"
     />
 
@@ -92,7 +95,7 @@ HTML;
 
     }
 
-    public function url_box_save( $post_id ) {
+    public function price_box_save( $post_id ) {
 
         if(
             !isset( $_POST[$this->prefix] )
@@ -102,10 +105,10 @@ HTML;
             return;
         }
 
-        $url = $_POST['_' . $this->prefix . '_url'];
-        $url = sanitize_text_field( $url );
+        $price = $_POST['_' . $this->prefix . '_price'];
+        $price = sanitize_text_field( $price );
 
-        update_post_meta( $post_id, '_' . $this->prefix . '_url', $url );
+        update_post_meta( $post_id, '_' . $this->prefix . '_price', $price );
 
     }
 
@@ -128,13 +131,13 @@ HTML;
                 $post->ID,
                 array( $this->width, $this->height )
             );
-            $url   = get_post_meta( $post->ID, '_' . $this->prefix . '_url', true );
+            $price   = get_post_meta( $post->ID, '_' . $this->prefix . '_price', true );
 
 
             $html .= <<<HTML
 
 <li>
-    <a href="{$url}">
+    <a href="{$price}">
         {$thumb}
     </a>
 </li>
@@ -155,4 +158,4 @@ HTML;
 
 }
 
-$affiliate_list = new Affiliate_List();
+$furniture = new Furniture();

@@ -1,4 +1,4 @@
-affiliate-list
-==============
+Office Wizard
+=============
 
-Easily add and remove affiliate thumbnails
+Empower customers to assemble their own fantasy office.
