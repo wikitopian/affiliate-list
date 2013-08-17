@@ -37,14 +37,26 @@ class Furniture {
         $this->width  = get_option( DOMAIN . '_width',  64 );
         $this->height = get_option( DOMAIN . '_height', 64 );
 
+        $labels = array(
+            'name'				=> __( 'Furniture', DOMAIN ),
+            'singular_name'		=> __( 'Furniture', DOMAIN ),
+            'add_new'			=> __( 'Add New', DOMAIN ),
+            'add_new_item'		=> __( 'Add New Product', DOMAIN ),
+            'edit_item'			=> __( 'Edit Product', DOMAIN ),
+            'new_item'			=> __( 'New Product', DOMAIN ),
+            'all_items'			=> __( 'All Products', DOMAIN ),
+            'view_item'			=> __( 'View Product', DOMAIN ),
+            'search_items'		=> __( 'Search Products', DOMAIN ),
+            'not_found'			=> __( 'Product(s) Not Found', DOMAIN ),
+            'not_found_in_trash'=> __( 'Product(s) Not Found in Trash', DOMAIN ),
+            'parent_item_colon'	=> __( '', DOMAIN ),
+            'menu_name'			=> __( 'Furniture', DOMAIN )
+        );
+
         register_post_type(
             DOMAIN,
             array(
-                'labels' =>
-                array(
-                    'name' => 'Furniture',
-                    'singular_name' => 'Furniture'
-                ),
+                'labels' => $labels,
                 'public' => true,
                 'has_archive' => true,
                 'show_in_nav_menus' => false,
