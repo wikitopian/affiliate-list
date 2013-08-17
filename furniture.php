@@ -28,6 +28,10 @@ class Furniture {
 
         add_action( 'init', array( &$this, 'init' ) );
 
+        add_action( 'init', array( &$this, 'register_type' ) );
+
+        add_action( 'init', array( &$this, 'register_taxa' ) );
+
         add_action( 'save_post', array( &$this, 'price_save' ) );
 
     }
@@ -36,6 +40,10 @@ class Furniture {
 
         $this->width  = get_option( DOMAIN . '_width',  64 );
         $this->height = get_option( DOMAIN . '_height', 64 );
+
+    }
+
+    public function register_type() {
 
         $labels = array(
             'name'				=> __( 'Furniture', DOMAIN ),
@@ -74,6 +82,10 @@ class Furniture {
                 array( &$this, 'add_price_box' )
             )
         );
+
+    }
+
+    public function register_taxa() {
 
     }
 
