@@ -30,8 +30,8 @@ class Affiliate_List {
 
     public function init() {
 
-        $this->width  = get_option( $this->prefix . '_width',  48 );
-        $this->height = get_option( $this->prefix . '_height', 48 );
+        $this->width  = get_option( $this->prefix . '_width',  64 );
+        $this->height = get_option( $this->prefix . '_height', 64 );
 
         register_post_type(
             $this->prefix,
@@ -148,7 +148,7 @@ HTML;
         if( $echo ) {
             echo $html;
         } else {
-            return;
+            return $html;
         }
 
     }
