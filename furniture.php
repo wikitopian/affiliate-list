@@ -87,6 +87,27 @@ class Furniture {
 
     public function register_taxa() {
 
+        $manufacturer_labels = array(
+            'name'              => _x( 'Manufacturers', 'register_taxonomy: name', DOMAIN ),
+            'singular_name'     => _x( 'Manufacturer', 'register_taxonomy: singular_name', DOMAIN ),
+            'search_items'      => _x( 'Search Manufacturers', 'register_taxonomy: search_items', DOMAIN ),
+            'all_items'         => _x( 'All Manufacturers', 'register_taxonomy: all_items', DOMAIN ),
+            'edit_item'         => _x( 'Edit Manufacturer', 'register_taxonomy: edit_item', DOMAIN ),
+            'update_item'       => _x( 'Update Manufacturer', 'register_taxonomy: update_item', DOMAIN ),
+            'add_new_item'      => _x( 'Add New Manufacturer', 'register_taxonomy: add_new_item', DOMAIN ),
+            'new_item_name'     => _x( 'New Manufacturer Name', 'register_taxonomy: new_item_name', DOMAIN ),
+            'menu_name'         => _x( 'Manufacturer', 'register_taxonomy: menu_name', DOMAIN ),
+        );
+
+        $manufacturer_args = array(
+            'hierarchical'      => true,
+            'labels'            => $manufacturer_labels,
+            'query_var'         => true,
+            'rewrite'           => array( 'slug' => 'manufacturer' ),
+        );
+
+        register_taxonomy( 'manufacturer', 'furniture', $manufacturer_args );
+
     }
 
     public function add_price_box() {
