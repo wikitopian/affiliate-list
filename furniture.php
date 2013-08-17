@@ -100,7 +100,7 @@ class Furniture {
         );
 
         $manufacturer_args = array(
-            'hierarchical'      => false,
+            'hierarchical'      => true,
             'labels'            => $manufacturer_labels,
             'query_var'         => true,
             'rewrite'           => array( 'slug' => 'manufacturer' ),
@@ -109,6 +109,54 @@ class Furniture {
         );
 
         register_taxonomy( 'manufacturer', 'furniture', $manufacturer_args );
+
+        $series_labels = array(
+            'name'              => _x( 'Series', 'register_taxonomy: name', DOMAIN ),
+            'singular_name'     => _x( 'Series', 'register_taxonomy: singular_name', DOMAIN ),
+            'search_items'      => _x( 'Search Series', 'register_taxonomy: search_items', DOMAIN ),
+            'all_items'         => _x( 'All Series', 'register_taxonomy: all_items', DOMAIN ),
+            'edit_item'         => _x( 'Edit Series', 'register_taxonomy: edit_item', DOMAIN ),
+            'update_item'       => _x( 'Update Series', 'register_taxonomy: update_item', DOMAIN ),
+            'add_new_item'      => _x( 'Add New Series', 'register_taxonomy: add_new_item', DOMAIN ),
+            'new_item_name'     => _x( 'New Series  Name', 'register_taxonomy: new_item_name', DOMAIN ),
+            'menu_name'         => _x( 'Series', 'register_taxonomy: menu_name', DOMAIN ),
+        );
+
+        $series_args = array(
+            'hierarchical'      => true,
+            'labels'            => $series_labels,
+            'query_var'         => true,
+            'rewrite'           => array( 'slug' => 'series' ),
+            'show_in_nav_menus' => false,
+            'show_tagcloud'     => false,
+        );
+
+        register_taxonomy( 'series', 'furniture', $series_args );
+
+        $furniture_type_labels = array(
+            'name'              => _x( 'Furniture Type', 'register_taxonomy: name', DOMAIN ),
+            'singular_name'     => _x( 'Furniture Type', 'register_taxonomy: singular_name', DOMAIN ),
+            'search_items'      => _x( 'Search Types', 'register_taxonomy: search_items', DOMAIN ),
+            'all_items'         => _x( 'All Types', 'register_taxonomy: all_items', DOMAIN ),
+            'edit_item'         => _x( 'Edit Types', 'register_taxonomy: edit_item', DOMAIN ),
+            'update_item'       => _x( 'Update Types', 'register_taxonomy: update_item', DOMAIN ),
+            'add_new_item'      => _x( 'Add New Types', 'register_taxonomy: add_new_item', DOMAIN ),
+            'new_item_name'     => _x( 'New Furniture Type Name', 'register_taxonomy: new_item_name', DOMAIN ),
+            'menu_name'         => _x( 'Furniture Types', 'register_taxonomy: menu_name', DOMAIN ),
+        );
+
+        $furniture_type_args = array(
+            'hierarchical'      => true,
+            'labels'            => $furniture_type_labels,
+            'query_var'         => true,
+            'rewrite'           => array( 'slug' => 'furniture-type' ),
+            'show_in_nav_menus' => false,
+            'show_tagcloud'     => false,
+        );
+
+        register_taxonomy( 'furniture-type', 'furniture', $furniture_type_args );
+
+
 
     }
 
