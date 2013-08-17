@@ -84,8 +84,8 @@ class Furniture {
             'Price',
             array( &$this, 'price_box' ),
             DOMAIN,
-            'normal',
-            'high'
+            'side',
+            'default'
         );
 
     }
@@ -98,13 +98,13 @@ class Furniture {
         $price = get_post_meta( $post->ID, '_' . DOMAIN . '_price', true );
 
         echo <<<HTML
-
+Est'd. Price $
 <input
-    type="text"
-    name="_{$this->domain}_price"
-    id  ="_{$this->domain}_price"
-    value="{$price}"
-    size="100%"
+    type  = "text"
+    name  = "_{$this->domain}_price"
+    id    = "_{$this->domain}_price"
+    value = "{$price}"
+    size  = "5"
     />
 
 HTML;
