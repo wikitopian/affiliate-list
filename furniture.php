@@ -46,19 +46,19 @@ class Furniture {
     public function register_type() {
 
         $labels = array(
-            'name'				=> __( 'Furniture', DOMAIN ),
-            'singular_name'		=> __( 'Furniture', DOMAIN ),
-            'add_new'			=> __( 'Add New', DOMAIN ),
-            'add_new_item'		=> __( 'Add New Product', DOMAIN ),
-            'edit_item'			=> __( 'Edit Product', DOMAIN ),
-            'new_item'			=> __( 'New Product', DOMAIN ),
-            'all_items'			=> __( 'All Products', DOMAIN ),
-            'view_item'			=> __( 'View Product', DOMAIN ),
-            'search_items'		=> __( 'Search Products', DOMAIN ),
-            'not_found'			=> __( 'Product(s) Not Found', DOMAIN ),
-            'not_found_in_trash'=> __( 'Product(s) Not Found in Trash', DOMAIN ),
-            'parent_item_colon'	=> __( '', DOMAIN ),
-            'menu_name'			=> __( 'Furniture', DOMAIN )
+            'name'				=> _x( 'Furniture',  'register_type: name', DOMAIN ),
+            'singular_name'		=> _x( 'Furniture',  'register_type: singular_name', DOMAIN ),
+            'add_new'			=> _x( 'Add New',  'register_type: add_new', DOMAIN ),
+            'add_new_item'		=> _x( 'Add New Product',  'register_type: add_new_item', DOMAIN ),
+            'edit_item'			=> _x( 'Edit Product',  'register_type: edit_item', DOMAIN ),
+            'new_item'			=> _x( 'New Product',  'register_type: new_item', DOMAIN ),
+            'all_items'			=> _x( 'All Products',  'register_type: all_items', DOMAIN ),
+            'view_item'			=> _x( 'View Product',  'register_type: view_item', DOMAIN ),
+            'search_items'		=> _x( 'Search Products',  'register_type: search_items', DOMAIN ),
+            'not_found'			=> _x( 'Product(s) Not Found',  'register_type: not_found', DOMAIN ),
+            'not_found_in_trash'=> _x( 'Product(s) Not Found in Trash',  'register_type: not_found_in_trash', DOMAIN ),
+            'parent_item_colon'	=> _x( '',  'register_type: parent_item_colon', DOMAIN ),
+            'menu_name'			=> _x( 'Furniture',  'register_type: menu_name', DOMAIN )
         );
 
         register_post_type(
