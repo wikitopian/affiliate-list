@@ -100,10 +100,12 @@ class Furniture {
         );
 
         $manufacturer_args = array(
-            'hierarchical'      => true,
+            'hierarchical'      => false,
             'labels'            => $manufacturer_labels,
             'query_var'         => true,
             'rewrite'           => array( 'slug' => 'manufacturer' ),
+            'show_in_nav_menus' => false,
+            'show_tagcloud'     => false,
         );
 
         register_taxonomy( 'manufacturer', 'furniture', $manufacturer_args );
