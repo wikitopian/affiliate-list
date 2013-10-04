@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: Affiliate List
+Plugin Name: Testimonials
 Plugin URI: http://www.github.com/wikitopian/affiliate-list
-Description: Easily add and remove affiliate thumbs
+Description: Easily add and remove client testimonials
 Version: 0.1.0
-Author: Matt Parrott
-Author URI: http://www.swarmstrategies.com/matt
+Author: @wikitopian
+Author URI: http://www.github.com/wikitopian
 License: GPLv2
  */
 
-class Affiliate_List {
+class Testimonials {
 
     private $prefix;
     private $max;
@@ -19,7 +19,7 @@ class Affiliate_List {
 
     public function __construct() {
 
-        $this->prefix = 'affiliate_list';
+        $this->prefix = 'testimonials';
         $this->max = 8;
 
         add_action( 'init', array( &$this, 'init' ) );
@@ -62,7 +62,7 @@ class Affiliate_List {
 
         add_meta_box(
             $this->prefix . '_url_box',
-            'Affiliate Link',
+            'Testimonials',
             array( &$this, 'url_box' ),
             $this->prefix,
             'normal',
@@ -155,4 +155,4 @@ HTML;
 
 }
 
-$affiliate_list = new Affiliate_List();
+$testimonials = new Testimonials();

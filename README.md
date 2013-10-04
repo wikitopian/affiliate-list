@@ -1,4 +1,21 @@
-affiliate-list
-==============
+Testimonials
+============
 
-Easily add and remove affiliate thumbnails
+Easily add and remove client testimonials
+
+Project Author
+---------------
+
+[@wikitopian](https://github.com/wikitopian)
+
+Donations
+---------
+
+* PayPal: `parrott.matt@gmail.com`
+
+* Bitcoin: `13fEAS4B9dTMNXS64Zyq58wCvp4yqnTp6s`
+
+License
+-------
+
+GPLv2
