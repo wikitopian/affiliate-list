@@ -38,8 +38,8 @@ class Testimonials {
             array(
                 'labels' =>
                 array(
-                    'name' => 'Affiliate List',
-                    'singular_name' => 'Affiliate'
+                    'name' => 'Testimonials',
+                    'singular_name' => 'Testimonial'
                 ),
                 'public' => true,
                 'has_archive' => true,
