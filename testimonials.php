@@ -62,7 +62,7 @@ class Testimonials {
 
 		add_meta_box(
 			$this->prefix . '_url_box',
-			'Testimonials',
+			'Testimonial',
 			array( &$this, 'url_box' ),
 			$this->prefix,
 			'normal',
@@ -120,7 +120,7 @@ class Testimonials {
 
 		$html = "<div id='{$this->prefix}'>\n<ul>";
 
-		for ( $loop->have_posts() ) {
+		while ( $loop->have_posts() ) {
 			$loop->the_post();
 			global $post;
 
