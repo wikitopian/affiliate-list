@@ -45,7 +45,6 @@ class Testimonials {
 				'has_archive' => true,
 				'show_in_nav_menus' => false,
 				'menu_position' => 101,
-				'has_archive' => false,
 				'supports' =>
 				array(
 					'title',
