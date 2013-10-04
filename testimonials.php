@@ -24,7 +24,7 @@ class Testimonials {
 
 		add_action( 'init', array( &$this, 'init' ) );
 
-		add_action( 'save_post', array( &$this, 'url_box_save' ) );
+		add_action( 'save_post', array( &$this, 'testimonial_box_save' ) );
 
 	}
 
@@ -51,18 +51,18 @@ class Testimonials {
 					'thumbnail',
 				),
 				'register_meta_box_cb' =>
-				array( &$this, 'add_url_box' )
+				array( &$this, 'add_testimonial_box' )
 			)
 		);
 
 	}
 
-	public function add_url_box() {
+	public function add_testimonial_box() {
 
 		add_meta_box(
-			$this->prefix . '_url_box',
+			$this->prefix . '_testimonial_box',
 			'Testimonial',
-			array( &$this, 'url_box' ),
+			array( &$this, 'testimonial_box' ),
 			$this->prefix,
 			'normal',
 			'high'
@@ -71,27 +71,17 @@ class Testimonials {
 	}
 
 
-	public function url_box( $post ) {
+	public function testimonial_box( $post ) {
 
 		wp_nonce_field( plugin_basename( __FILE__ ), $this->prefix );
 
-		$url = get_post_meta( $post->ID, '_' . $this->prefix . '_url', true );
+		$testimonial = get_post_meta( $post->ID, '_' . $this->prefix . '_testimonial', true );
 
-?>
-
-<input
-	type="text"
-	name="_<?php echo sanitize_text_field( $this->prefix ); ?>_url"
-	id  ="_<?php echo sanitize_text_field( $this->prefix ); ?>_url"
-	value="<?php echo sanitize_text_field( $url ); ?>"
-	size="100%"
-	/>
-
-<?php
+		wp_editor( $testimonial, $this->prefix . '_testimonial' );
 
 	}
 
-	public function url_box_save( $post_id ) {
+	public function testimonial_box_save( $post_id ) {
 
 		if (
 			!isset( $_POST[$this->prefix] )
@@ -101,10 +91,10 @@ class Testimonials {
 			return;
 		}
 
-		$url = $_POST['_' . $this->prefix . '_url'];
-		$url = sanitize_text_field( $url );
+		$testimonial = $_POST['_' . $this->prefix . '_testimonial'];
+		$testimonial = sanitize_text_field( $testimonial );
 
-		update_post_meta( $post_id, '_' . $this->prefix . '_url', $url );
+		update_post_meta( $post_id, '_' . $this->prefix . '_testimonial', $testimonial );
 
 	}
 
@@ -127,19 +117,17 @@ class Testimonials {
 				$post->ID,
 				array( $this->width, $this->height )
 			);
-			$url   = get_post_meta( $post->ID, '_' . $this->prefix . '_url', true );
+			$testimonial = get_post_meta( $post->ID, '_' . $this->prefix . '_testimonial', true );
 
 
 			$html .= <<<HTML
 
 <li>
-	<a href="{$url}">
 		{$thumb}
-	</a>
+		<p>{$testimonial}</p>
 </li>
 
 HTML;
-
 		}
 
 		$html .= "\n</ul>\n</div>\n";
