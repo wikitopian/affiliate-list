@@ -43,7 +43,7 @@ class Testimonials {
 				),
 				'public' => true,
 				'has_archive' => true,
-				'show_in_nav_menus' => false,
+				'show_in_nav_menus' => true,
 				'menu_position' => 101,
 				'supports' =>
 				array(
